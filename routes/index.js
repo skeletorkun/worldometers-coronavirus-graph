@@ -1,20 +1,18 @@
-var express = require('express');
-var router = express.Router();
+import { getData } from '../src/service';
 
-import HistoryDataDao from '../src/dao/dao'
-const dao = new HistoryDataDao();
+import express from 'express';
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  const loadData = async () => {
-    let data = await dao.readEntities();
-    console.log("Data --> ", data);
-  };
-
-  loadData().then(result => {
-    res.render('index', { title: result });
-  });
+  getData()
+    .then(data => {
+      res.render('index', { title: 'First graph', graphData: data });
+    })
+    .catch(reason => {
+      res.render('index', { title: reason });
+    });
 
 });
 

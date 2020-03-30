@@ -22,4 +22,7 @@ export const queries = {
              FROM wm_dt_coronavirus_new`,
   read_history_data: `SELECT *
                       FROM wm_dt_coronavirus_history_new`,
+
+  read_history_data_for_countries: `SELECT *
+                      FROM wm_dt_coronavirus_history_new where entity_id_coronavirus in (\'italy\', \'france\')`
 };
