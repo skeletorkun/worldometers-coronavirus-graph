@@ -28,17 +28,15 @@ export const queries = {
                                     where entity_id_coronavirus in (\'italy\', \'france\')`,
 
   select_days_after_100_cases: `SELECT *,
-                                       COALESCE(
-                                               DATEDIFF(
-                                                       (SELECT hist2.current_date
-                                                        from wm_dt_coronavirus_history_new as hist2
-                                                        where hist2.id = hist.id
-                                                          and hist2.entity_id_coronavirus = hist.entity_id_coronavirus),
-                                                       (SELECT min(hist3.current_date)
-                                                        from wm_dt_coronavirus_history_new as hist3
-                                                        where hist3.entity_id_coronavirus = hist.entity_id_coronavirus
-                                                          and cases > 100)
-                                                   )
+                                       DATEDIFF(
+                                               (SELECT hist2.current_date
+                                                from wm_dt_coronavirus_history_new as hist2
+                                                where hist2.id = hist.id
+                                                  and hist2.entity_id_coronavirus = hist.entity_id_coronavirus),
+                                               (SELECT min(hist3.current_date)
+                                                from wm_dt_coronavirus_history_new as hist3
+                                                where hist3.entity_id_coronavirus = hist.entity_id_coronavirus
+                                                  and cases > 100)
                                            ) AS day_num
                                 FROM wm_dt_coronavirus_history_new as hist
                                 where entity_id_coronavirus in ('italy', 'china', 'france')
