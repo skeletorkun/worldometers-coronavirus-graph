@@ -6,9 +6,11 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  getData()
+  const countries = ['italy', 'france', 'china'];
+
+  getData({countries})
     .then(data => {
-      res.render('index', { title: 'First graph', graphData: data });
+      res.render('index', { title: 'Demo of the new graphs', graphData: data });
     })
     .catch(reason => {
       res.render('index', { title: reason });
