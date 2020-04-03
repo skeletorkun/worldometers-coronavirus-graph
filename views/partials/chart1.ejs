@@ -1,12 +1,12 @@
-<!-- views/partials/spider-chart.ejs -->
+<!-- views/partials/chart1.ejs -->
 
 <!--NOTE: host pages must include the following in <head>-->
 <!--<script src='http://code.jquery.com/jquery-1.6.1.js'></script>-->
-<!--<script src="scripts/SpiderChartControl.js"></script>-->
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/debugger.js"></script>
 <div id="container" style="min-width: 300px; max-width: 1000px; height: 300px; margin: 0 auto"></div>
 
 <script>
@@ -19,6 +19,7 @@
     chart: {
       renderTo: 'container',
       type: 'line',
+      displayErrors: true,
       marginRight: 130,
       marginBottom: 25,
     },
