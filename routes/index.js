@@ -1,13 +1,15 @@
-import { getData, getDataForWorldMap } from '../src/service';
+import { getData } from '../src/service';
+import { getDataForWorldMap } from '../src/service2';
 
 import express from 'express';
+
 const router = express.Router();
 
 const handleGraph1 = (req, res, next) => {
 
   const countries = ['italy', 'france', 'china'];
 
-  getData({countries})
+  getData({ countries })
     .then(data => {
       res.render('index', { title: 'Demo', page: 'chart1', graphData: data });
     })
@@ -28,7 +30,6 @@ const handleGraph2 = (req, res, next) => {
     });
 
 };
-
 
 
 /* GET graph-1. */

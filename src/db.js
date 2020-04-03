@@ -23,9 +23,12 @@ export const queries = {
   read_history_data: `SELECT *
                       FROM wm_dt_coronavirus_history_new`,
 
-  read_history_data_for_countries: `SELECT *
-                                    FROM wm_dt_coronavirus_history_new
-                                    where entity_id_coronavirus in (\'italy\', \'france\')`,
+  select_history_data_for_world: `SELECT entity_id_coronavirus as entity_id,
+                                         cca3_coronavirus as cca3,
+                                         cases,
+                                         deaths,
+                                         h.current_date
+                                  FROM wm_dt_coronavirus_history_new h;`,
 
   select_days_after_100_cases: `SELECT *,
                                        DATEDIFF(

@@ -16,6 +16,8 @@ const prepareForGraph = (data) => {
   const countries = {};
   data.forEach(row => {
     let country = row['entity_id_coronavirus'];
+    let cca3 = row['cca3_coronavirus']; //iso-a3
+
     countries[country] = countries[country] || [];
     countries[country].push(row.cases);
   });
@@ -25,23 +27,7 @@ const prepareForGraph = (data) => {
   return result;
 };
 
-
-
 export const getData = async (params) => {
-  return new Promise(((resolve, reject) => {
-    dao.readEntities(queries.select_days_after_100_cases)
-      .then(result => applyParams(result, params))
-      .then(result => prepareForGraph(result, params))
-      .then(result => {
-        console.log('result ', JSON.stringify(result, null, 2));
-        resolve(JSON.stringify(result));
-      });
-  }));
-};
-
-
-
-export const getDataForWorldMap = async (params) => {
   return new Promise(((resolve, reject) => {
     dao.readEntities(queries.select_days_after_100_cases)
       .then(result => applyParams(result, params))
