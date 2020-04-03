@@ -40,10 +40,6 @@
       text: 'Per country over time '
     },
 
-    legend: {
-      enabled: false
-    },
-
     mapNavigation: {
       enabled: true,
       buttonOptions: {
@@ -51,22 +47,25 @@
       }
     },
 
+    legend: {
+      title: {
+        text: 'cases'
+      }
+    },
+    colorAxis: {
+      min: 1,
+      max: 80000,
+      type: 'logarithmic',
+      minColor: '#e9facf',
+      maxColor: '#538c00',
+    },
     series: [{
-      name: 'Countries',
-      color: '#E0E0E0',
-      enableMouseTracking: false,
-      mapData: Highcharts.maps['custom/world']
-    }, {
       mapData: Highcharts.maps['custom/world'],
-      type: 'mapbubble',
       name: 'Total cases',
       joinBy: ['iso-a3', 'cca3'],
       data: graphData[0].data.slice(),
-      minSize: 4,
-      maxSize: '12%',
-      color: '#8ACA2B',
       tooltip: {
-        pointFormat: '{point.country}: {point.z}'
+        valueSuffix: ' '
       }
     }]
   });
@@ -86,11 +85,11 @@
     }
 
     output.innerHTML = graphData[input.value].name; // Output value
-    if (input.value >=  parseInt(input.max)) { // Auto-pause
+    if (input.value >= parseInt(input.max)) { // Auto-pause
       pause($('#play-pause-button')[0]);
     }
     let data = graphData[input.value].data;
-    chart.series[1].setData(data); // Increment dataset (updates chart)
+    chart.series[0].setData(data); // Increment dataset (updates chart)
   }
 
   /**

@@ -25,7 +25,7 @@ const prepareForWorldMap = (data) => {
     let deaths = row['deaths'];
 
     if (cases) {
-      const data = { cca3, z: cases, country };
+      const data = { cca3, value: cases, country };
       dates[date] = dates[date] || [];
       dates[date].push(data);
     }
