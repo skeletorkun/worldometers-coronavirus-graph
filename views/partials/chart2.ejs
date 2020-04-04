@@ -47,11 +47,6 @@
       }
     },
 
-    legend: {
-      title: {
-        text: 'cases'
-      }
-    },
     colorAxis: {
       min: 1,
       max: 80000,
@@ -64,9 +59,6 @@
       name: 'Total cases',
       joinBy: ['iso-a3', 'cca3'],
       data: graphData[0].data.slice(),
-      tooltip: {
-        valueSuffix: ' '
-      }
     }]
   });
 
